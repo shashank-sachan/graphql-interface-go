@@ -2,31 +2,12 @@
 
 package models
 
-type Content interface {
-	IsContent()
-	GetID() *string
-	GetTitle() *string
-}
-
-type A struct {
+type Content struct {
 	ID    *string `json:"id"`
 	Title *string `json:"title"`
 	Teams []*Team `json:"teams"`
-}
-
-func (A) IsContent()             {}
-func (this A) GetID() *string    { return this.ID }
-func (this A) GetTitle() *string { return this.Title }
-
-type B struct {
-	ID    *string `json:"id"`
-	Title *string `json:"title"`
 	Score *int    `json:"score"`
 }
-
-func (B) IsContent()             {}
-func (this B) GetID() *string    { return this.ID }
-func (this B) GetTitle() *string { return this.Title }
 
 type Root struct {
 	ID       *string    `json:"id"`
@@ -35,8 +16,8 @@ type Root struct {
 }
 
 type Segment struct {
-	ID       *string   `json:"id"`
-	Contents []Content `json:"contents"`
+	ID       *string    `json:"id"`
+	Contents []*Content `json:"contents"`
 }
 
 type Team struct {

@@ -42,15 +42,10 @@ type DirectiveRoot struct {
 }
 
 type ComplexityRoot struct {
-	A struct {
-		ID    func(childComplexity int) int
-		Teams func(childComplexity int) int
-		Title func(childComplexity int) int
-	}
-
-	B struct {
+	Content struct {
 		ID    func(childComplexity int) int
 		Score func(childComplexity int) int
+		Teams func(childComplexity int) int
 		Title func(childComplexity int) int
 	}
 
@@ -93,47 +88,33 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 	_ = ec
 	switch typeName + "." + field {
 
-	case "A.id":
-		if e.complexity.A.ID == nil {
+	case "Content.id":
+		if e.complexity.Content.ID == nil {
 			break
 		}
 
-		return e.complexity.A.ID(childComplexity), true
+		return e.complexity.Content.ID(childComplexity), true
 
-	case "A.teams":
-		if e.complexity.A.Teams == nil {
+	case "Content.score":
+		if e.complexity.Content.Score == nil {
 			break
 		}
 
-		return e.complexity.A.Teams(childComplexity), true
+		return e.complexity.Content.Score(childComplexity), true
 
-	case "A.title":
-		if e.complexity.A.Title == nil {
+	case "Content.teams":
+		if e.complexity.Content.Teams == nil {
 			break
 		}
 
-		return e.complexity.A.Title(childComplexity), true
+		return e.complexity.Content.Teams(childComplexity), true
 
-	case "B.id":
-		if e.complexity.B.ID == nil {
+	case "Content.title":
+		if e.complexity.Content.Title == nil {
 			break
 		}
 
-		return e.complexity.B.ID(childComplexity), true
-
-	case "B.score":
-		if e.complexity.B.Score == nil {
-			break
-		}
-
-		return e.complexity.B.Score(childComplexity), true
-
-	case "B.title":
-		if e.complexity.B.Title == nil {
-			break
-		}
-
-		return e.complexity.B.Title(childComplexity), true
+		return e.complexity.Content.Title(childComplexity), true
 
 	case "Query.GetData":
 		if e.complexity.Query.GetData == nil {
@@ -251,21 +232,11 @@ type Team {
   name: String
 }
 
-type A implements Content {
+type Content {
   id: String
   title: String
   teams: [Team]
-}
-
-type B implements Content {
-  id: String
-  title: String
   score: Int
-}
-
-interface Content {
-  id: String
-  title: String
 }
 
 type Query {
@@ -332,8 +303,8 @@ func (ec *executionContext) field___Type_fields_args(ctx context.Context, rawArg
 
 // region    **************************** field.gotpl *****************************
 
-func (ec *executionContext) _A_id(ctx context.Context, field graphql.CollectedField, obj *models.A) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_A_id(ctx, field)
+func (ec *executionContext) _Content_id(ctx context.Context, field graphql.CollectedField, obj *models.Content) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Content_id(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -360,9 +331,9 @@ func (ec *executionContext) _A_id(ctx context.Context, field graphql.CollectedFi
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_A_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Content_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "A",
+		Object:     "Content",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -373,8 +344,8 @@ func (ec *executionContext) fieldContext_A_id(ctx context.Context, field graphql
 	return fc, nil
 }
 
-func (ec *executionContext) _A_title(ctx context.Context, field graphql.CollectedField, obj *models.A) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_A_title(ctx, field)
+func (ec *executionContext) _Content_title(ctx context.Context, field graphql.CollectedField, obj *models.Content) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Content_title(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -401,9 +372,9 @@ func (ec *executionContext) _A_title(ctx context.Context, field graphql.Collecte
 	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_A_title(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Content_title(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "A",
+		Object:     "Content",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -414,8 +385,8 @@ func (ec *executionContext) fieldContext_A_title(ctx context.Context, field grap
 	return fc, nil
 }
 
-func (ec *executionContext) _A_teams(ctx context.Context, field graphql.CollectedField, obj *models.A) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_A_teams(ctx, field)
+func (ec *executionContext) _Content_teams(ctx context.Context, field graphql.CollectedField, obj *models.Content) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Content_teams(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -442,9 +413,9 @@ func (ec *executionContext) _A_teams(ctx context.Context, field graphql.Collecte
 	return ec.marshalOTeam2ᚕᚖgraphqlᚑinterfaceᚑgoᚋmodelsᚐTeam(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_A_teams(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Content_teams(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "A",
+		Object:     "Content",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -459,90 +430,8 @@ func (ec *executionContext) fieldContext_A_teams(ctx context.Context, field grap
 	return fc, nil
 }
 
-func (ec *executionContext) _B_id(ctx context.Context, field graphql.CollectedField, obj *models.B) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_B_id(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.ID, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_B_id(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "B",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _B_title(ctx context.Context, field graphql.CollectedField, obj *models.B) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_B_title(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Title, nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		return graphql.Null
-	}
-	res := resTmp.(*string)
-	fc.Result = res
-	return ec.marshalOString2ᚖstring(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_B_title(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "B",
-		Field:      field,
-		IsMethod:   false,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type String does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _B_score(ctx context.Context, field graphql.CollectedField, obj *models.B) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_B_score(ctx, field)
+func (ec *executionContext) _Content_score(ctx context.Context, field graphql.CollectedField, obj *models.Content) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Content_score(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -569,9 +458,9 @@ func (ec *executionContext) _B_score(ctx context.Context, field graphql.Collecte
 	return ec.marshalOInt2ᚖint(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_B_score(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Content_score(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "B",
+		Object:     "Content",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -953,9 +842,9 @@ func (ec *executionContext) _Segment_contents(ctx context.Context, field graphql
 	if resTmp == nil {
 		return graphql.Null
 	}
-	res := resTmp.([]models.Content)
+	res := resTmp.([]*models.Content)
 	fc.Result = res
-	return ec.marshalOContent2ᚕgraphqlᚑinterfaceᚑgoᚋmodelsᚐContent(ctx, field.Selections, res)
+	return ec.marshalOContent2ᚕᚖgraphqlᚑinterfaceᚑgoᚋmodelsᚐContent(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) fieldContext_Segment_contents(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
@@ -965,7 +854,17 @@ func (ec *executionContext) fieldContext_Segment_contents(ctx context.Context, f
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("FieldContext.Child cannot be called on type INTERFACE")
+			switch field.Name {
+			case "id":
+				return ec.fieldContext_Content_id(ctx, field)
+			case "title":
+				return ec.fieldContext_Content_title(ctx, field)
+			case "teams":
+				return ec.fieldContext_Content_teams(ctx, field)
+			case "score":
+				return ec.fieldContext_Content_score(ctx, field)
+			}
+			return nil, fmt.Errorf("no field named %q was found under type Content", field.Name)
 		},
 	}
 	return fc, nil
@@ -2789,87 +2688,35 @@ func (ec *executionContext) fieldContext___Type_specifiedByURL(ctx context.Conte
 
 // region    ************************** interface.gotpl ***************************
 
-func (ec *executionContext) _Content(ctx context.Context, sel ast.SelectionSet, obj models.Content) graphql.Marshaler {
-	switch obj := (obj).(type) {
-	case nil:
-		return graphql.Null
-	case models.A:
-		return ec._A(ctx, sel, &obj)
-	case *models.A:
-		if obj == nil {
-			return graphql.Null
-		}
-		return ec._A(ctx, sel, obj)
-	case models.B:
-		return ec._B(ctx, sel, &obj)
-	case *models.B:
-		if obj == nil {
-			return graphql.Null
-		}
-		return ec._B(ctx, sel, obj)
-	default:
-		panic(fmt.Errorf("unexpected type %T", obj))
-	}
-}
-
 // endregion ************************** interface.gotpl ***************************
 
 // region    **************************** object.gotpl ****************************
 
-var aImplementors = []string{"A", "Content"}
+var contentImplementors = []string{"Content"}
 
-func (ec *executionContext) _A(ctx context.Context, sel ast.SelectionSet, obj *models.A) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, aImplementors)
+func (ec *executionContext) _Content(ctx context.Context, sel ast.SelectionSet, obj *models.Content) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, contentImplementors)
 	out := graphql.NewFieldSet(fields)
 	var invalids uint32
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("A")
+			out.Values[i] = graphql.MarshalString("Content")
 		case "id":
 
-			out.Values[i] = ec._A_id(ctx, field, obj)
+			out.Values[i] = ec._Content_id(ctx, field, obj)
 
 		case "title":
 
-			out.Values[i] = ec._A_title(ctx, field, obj)
+			out.Values[i] = ec._Content_title(ctx, field, obj)
 
 		case "teams":
 
-			out.Values[i] = ec._A_teams(ctx, field, obj)
-
-		default:
-			panic("unknown field " + strconv.Quote(field.Name))
-		}
-	}
-	out.Dispatch()
-	if invalids > 0 {
-		return graphql.Null
-	}
-	return out
-}
-
-var bImplementors = []string{"B", "Content"}
-
-func (ec *executionContext) _B(ctx context.Context, sel ast.SelectionSet, obj *models.B) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, bImplementors)
-	out := graphql.NewFieldSet(fields)
-	var invalids uint32
-	for i, field := range fields {
-		switch field.Name {
-		case "__typename":
-			out.Values[i] = graphql.MarshalString("B")
-		case "id":
-
-			out.Values[i] = ec._B_id(ctx, field, obj)
-
-		case "title":
-
-			out.Values[i] = ec._B_title(ctx, field, obj)
+			out.Values[i] = ec._Content_teams(ctx, field, obj)
 
 		case "score":
 
-			out.Values[i] = ec._B_score(ctx, field, obj)
+			out.Values[i] = ec._Content_score(ctx, field, obj)
 
 		default:
 			panic("unknown field " + strconv.Quote(field.Name))
@@ -3658,14 +3505,7 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	return res
 }
 
-func (ec *executionContext) marshalOContent2graphqlᚑinterfaceᚑgoᚋmodelsᚐContent(ctx context.Context, sel ast.SelectionSet, v models.Content) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._Content(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOContent2ᚕgraphqlᚑinterfaceᚑgoᚋmodelsᚐContent(ctx context.Context, sel ast.SelectionSet, v []models.Content) graphql.Marshaler {
+func (ec *executionContext) marshalOContent2ᚕᚖgraphqlᚑinterfaceᚑgoᚋmodelsᚐContent(ctx context.Context, sel ast.SelectionSet, v []*models.Content) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
 	}
@@ -3692,7 +3532,7 @@ func (ec *executionContext) marshalOContent2ᚕgraphqlᚑinterfaceᚑgoᚋmodels
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalOContent2graphqlᚑinterfaceᚑgoᚋmodelsᚐContent(ctx, sel, v[i])
+			ret[i] = ec.marshalOContent2ᚖgraphqlᚑinterfaceᚑgoᚋmodelsᚐContent(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -3704,6 +3544,13 @@ func (ec *executionContext) marshalOContent2ᚕgraphqlᚑinterfaceᚑgoᚋmodels
 	wg.Wait()
 
 	return ret
+}
+
+func (ec *executionContext) marshalOContent2ᚖgraphqlᚑinterfaceᚑgoᚋmodelsᚐContent(ctx context.Context, sel ast.SelectionSet, v *models.Content) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	return ec._Content(ctx, sel, v)
 }
 
 func (ec *executionContext) unmarshalOInt2ᚖint(ctx context.Context, v interface{}) (*int, error) {

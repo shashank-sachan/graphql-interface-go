@@ -13,21 +13,11 @@ type Team {
   name: String
 }
 
-type A implements Content {
+type Content {
   id: String
   title: String
   teams: [Team]
-}
-
-type B implements Content {
-  id: String
-  title: String
   score: Int
-}
-
-interface Content {
-  id: String
-  title: String
 }
 
 type Query {
