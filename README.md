@@ -3,7 +3,7 @@ go mod tidy
 go run main.go  
 
 
-GrapphQL Query:  
+### GrapphQL Query:  
 ```
 query {
   GetData {
@@ -24,6 +24,22 @@ query {
         }
       }
     }
+  }
+}
+```
+
+### Error:
+```
+  "errors": [
+    {
+      "message": "json: cannot unmarshal object into Go struct field Segment.segments.contents of type models.Content",
+      "path": [
+        "GetData"
+      ]
+    }
+  ],
+  "data": {
+    "GetData": null
   }
 }
 ```
