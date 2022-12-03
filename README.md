@@ -1,4 +1,4 @@
-How to Run:  
+### How to Run:  
 go mod tidy  
 go run main.go  
 
