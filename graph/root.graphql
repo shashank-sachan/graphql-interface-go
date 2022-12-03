@@ -1,0 +1,35 @@
+type Root {
+  id: String
+  title: String
+  segments: [Segment]
+}
+
+type Segment {
+  id: String
+  contents: [Content]
+}
+
+type Team {
+  name: String
+}
+
+type A implements Content {
+  id: String
+  title: String
+  teams: [Team]
+}
+
+type B implements Content {
+  id: String
+  title: String
+  score: Int
+}
+
+interface Content {
+  id: String
+  title: String
+}
+
+type Query {
+  GetData: Root
+}
